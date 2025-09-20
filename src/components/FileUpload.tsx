@@ -4,12 +4,14 @@ import React, { useCallback, useState } from "react";
 // Props for file upload
 interface FileUploadProps {
   onFileSelect: (file: File | null) => void;
+  onShowModal?: (title: string, message: string) => void;
   acceptedTypes?: string;
   maxSize?: number;
 }
 
 function FileUpload({
   onFileSelect,
+  onShowModal,
   acceptedTypes = "audio/*, .mp3, .wav",
   maxSize = 10,
 }: FileUploadProps) {
@@ -47,7 +49,26 @@ function FileUpload({
   const handleFileSelection = (file: File) => {
     // Validate file size, btw maxSize (which is 10) is in terms of MB
     if (file.size > maxSize * 1024 * 1024) {
-      alert(`File size should not exceed ${maxSize} MB`);
+      if (onShowModal) {
+        onShowModal(
+          "File Too Large",
+          `File size should not exceed ${maxSize} MB. Please choose a smaller file.`
+        );
+      } else {
+        alert(`File size should not exceed ${maxSize}MB`);
+      }
+
+      // Reset the file input and selected file state
+      const fileInput = document.getElementById(
+        "file-upload"
+      ) as HTMLInputElement;
+
+      if (fileInput) {
+        fileInput.value = "";
+      }
+
+      setSelectedFile(null);
+      onFileSelect(null);
       return;
     }
 
