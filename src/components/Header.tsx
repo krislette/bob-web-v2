@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <div className="px-12 py-8 flex justify-between w-full">
+    <div className="px-12 py-8 flex justify-between w-full font-montserrat">
       <Link to="/">Bach or Bot</Link>
       <a
         href="https://github.com/krislette/bach-or-bot"

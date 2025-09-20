@@ -81,7 +81,7 @@ function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
       {/* Container for the audio upload portion */}
       <div className="flex flex-col space-y-2 w-full max-w-3xl">
         {/* Title */}
-        <h3 className="flex flex-start">Audio File</h3>
+        <h3 className="flex flex-start font-montserrat">Audio File</h3>
 
         {/* File upload component */}
         <FileUpload
@@ -95,7 +95,7 @@ function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
       {/* Container for the lyrics input portion */}
       <div className="flex flex-col space-y-2 w-full max-w-3xl">
         {/* Title */}
-        <h3 className="flex flex-start">Lyrics</h3>
+        <h3 className="flex flex-start font-montserrat">Lyrics</h3>
 
         {/* File upload component */}
         <LyricsUpload onLyricsChange={handleLyricsChange} />

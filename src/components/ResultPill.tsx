@@ -19,7 +19,7 @@ function ResultPill({ classification }: ResultPillProps) {
       ) : (
         <UserRoundCheck className="mr-2" size={32} />
       )}
-      <h1 className="text-2xl">
+      <h1 className="text-2xl font-montserrat">
         {classification === "AI-Generated" ? "AI-Generated" : "Human-Composed"}
       </h1>
     </div>
