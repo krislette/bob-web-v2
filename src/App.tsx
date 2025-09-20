@@ -4,7 +4,7 @@ import Results from "./pages/Results";
 
 function App() {
   return (
-    <div className="bg-color-white">
+    <div className="min-h-screen bg-black-darkest text-white-custom">
       <BrowserRouter>
         <Routes>
           <Route element={<Landing />} path="/" />
