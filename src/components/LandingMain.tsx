@@ -60,6 +60,8 @@ function LandingMain({ onLoadingChange }: LandingMainProps) {
     } catch (error) {
       console.error("Error analyzing", error);
       alert("Analysis failed. Please try again.");
+    } finally {
+      onLoadingChange(false);
     }
   };
 
