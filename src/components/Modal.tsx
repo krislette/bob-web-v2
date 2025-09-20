@@ -60,7 +60,7 @@ function Modal({
       className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/80"
       onClick={handleBackdropClick}
     >
-      <div className="bg-black-darker border border-gray-700 rounded-xl p-6 max-w-md w-full mx-4 relative flex flex-col">
+      <div className="bg-black-darker border border-gray-700 rounded-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full mx-2 sm:mx-4 relative flex flex-col">
         {/* Close button*/}
         <button
           onClick={onClose}

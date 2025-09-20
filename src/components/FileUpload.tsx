@@ -99,8 +99,7 @@ function FileUpload({
       <label
         htmlFor="file-upload"
         className={`
-          border-2 border-dashed rounded-lg p-16 text-center cursor-pointer
-          transition-all duration-200 block min-h-60 h-60
+          border-2 border-dashed rounded-lg p-8 sm:p-12 md:p-16 text-center cursor-pointer transition-all duration-200 block min-h-48 sm:min-h-52 md:min-h-60 h-48 sm:h-52 md:h-60
           ${
             isDragging
               ? "border-blue-500 bg-blue-500/10"
@@ -112,7 +111,7 @@ function FileUpload({
         onDrop={handleDrop}
       >
         <div className="flex flex-col items-center space-y-3">
-          <Music className="w-12 h-12" />
+          <Music className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
           <div className="text-gray-300">
             {selectedFile ? (
               <span className="text-blue-custom">{selectedFile.name}</span>
