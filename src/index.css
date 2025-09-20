@@ -32,11 +32,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-blue-custom);
+  background-color: var(--color-white-custom);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-blue-custom);
+  background-color: var(--color-white-custom);
 }
 
 body {
