@@ -57,6 +57,7 @@ function LandingMain({ onLoadingChange }: LandingMainProps) {
       navigate("/results", {
         state: { result, lyrics, fileName: selectedFile.name },
       });
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error("Error analyzing", error);
       alert("Analysis failed. Please try again.");
