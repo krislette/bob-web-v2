@@ -1,1 +1,43 @@
+/* Font imports */
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+/* Tailwind import */
 @import "tailwindcss";
+
+/* Add custom fonts & colors to tailwind */
+@theme {
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --color-black-darkest: #0a0a0b;
+  --color-black-darker: #121010;
+  --color-black-dark: #1f1f1e;
+  --color-blue-custom: #4c77be;
+  --color-white-custom: #fff;
+}
+
+/* Custom styles */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-white);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-white);
+}
+
+body {
+  font-family: "Poppins";
+  background-color: var(--color-black-darkest);
+  color: var(--color-white);
+  margin: 0;
+  padding: 0;
+}
