@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 // Props for landing main component
 interface LandingMainProps {
   onLoadingChange: (isLoading: boolean) => void;
+  onShowModal: (title: string, message: string, buttonText?: string) => void;
 }
 
-function LandingMain({ onLoadingChange }: LandingMainProps) {
+function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [lyrics, setLyrics] = useState("");
   const navigate = useNavigate();
@@ -28,7 +29,10 @@ function LandingMain({ onLoadingChange }: LandingMainProps) {
   // For when the user actually clicks analyze button
   const handleAnalyze = async () => {
     if (!selectedFile || !lyrics.trim()) {
-      alert("Please upload an audio file and enter lyrics");
+      onShowModal(
+        "Incomplete Input",
+        "We couldn't analyze your music right now. Please upload an audio file and enter lyrics."
+      );
       return;
     }
 
@@ -60,9 +64,12 @@ function LandingMain({ onLoadingChange }: LandingMainProps) {
       window.scrollTo(0, 0);
     } catch (error) {
       console.error("Error analyzing", error);
-      alert("Analysis failed. Please try again.");
-    } finally {
       onLoadingChange(false);
+      onShowModal(
+        "Analysis Failed",
+        "We couldn't analyze your music right now. Please check your connection and try again.",
+        "Try Again"
+      );
     }
   };
 
@@ -79,6 +86,7 @@ function LandingMain({ onLoadingChange }: LandingMainProps) {
         {/* File upload component */}
         <FileUpload
           onFileSelect={handleFileSelect}
+          onShowModal={onShowModal}
           acceptedTypes="audio/*, .mp3, .wav"
           maxSize={10}
         />
