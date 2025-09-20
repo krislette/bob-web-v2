@@ -94,7 +94,7 @@ function FileUpload({
           <Music className="w-12 h-12" />
           <div className="text-gray-300">
             {selectedFile ? (
-              <span className="text-green-400">{selectedFile.name}</span>
+              <span className="text-blue-custom">{selectedFile.name}</span>
             ) : (
               <>
                 <p>
