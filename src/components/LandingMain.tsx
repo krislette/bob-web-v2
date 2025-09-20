@@ -77,7 +77,7 @@ function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
   const isFormValid = selectedFile !== null && lyrics.trim().length > 0;
 
   return (
-    <div className="bg-black-darker min-h-[calc(100vh-4rem)] flex flex-col items-center p-8 pb-10 rounded-xl mt-8 mx-64 space-y-8">
+    <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 pb-6 md:pb-10 rounded-xl mt-4 sm:mt-6 md:mt-8 mx-auto max-w-3xl space-y-6 md:space-y-8">
       {/* Container for the audio upload portion */}
       <div className="flex flex-col space-y-2 w-full max-w-3xl">
         {/* Title */}
