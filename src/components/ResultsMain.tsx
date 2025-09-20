@@ -42,6 +42,13 @@ function ResultsMain({ result, lyrics, fileName }: ResultsMainProps) {
         />
       </div>
 
+      {/* File name display - personal additiones */}
+      {fileName && (
+        <p className="text-sm text-gray-400">
+          Analysis results for: <span className="text-white">{fileName}</span>
+        </p>
+      )}
+
       {/* Result caption */}
       <p className="text-justify max-w-3xl">
         This song was classified as <strong>{classification}</strong> because
