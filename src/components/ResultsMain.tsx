@@ -29,7 +29,7 @@ function ResultsMain({ result, lyrics, fileName }: ResultsMainProps) {
   };
 
   return (
-    <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 pb-6 md:pb-10 rounded-xl mt-4 sm:mt-6 md:mt-8 mx-auto max-w-4xl space-y-6 md:space-y-8">
+    <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 pb-6 md:pb-10 rounded-xl mt-4 sm:mt-6 md:mt-8 mx-auto max-w-3xl space-y-6 md:space-y-8">
       {/* Main result indicator pill */}
       <ResultPill classification={classification} />
 
