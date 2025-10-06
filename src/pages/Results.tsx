@@ -8,7 +8,7 @@ function Results() {
   const location = useLocation();
 
   // To get the API results passed by the landing page
-  const { result, lyrics, fileName } = location.state || {};
+  const { prediction, explanation, fileName } = location.state || {};
 
   return (
     <div>
@@ -21,7 +21,11 @@ function Results() {
         <Title />
 
         {/* Main content container */}
-        <ResultsMain result={result} lyrics={lyrics} fileName={fileName} />
+        <ResultsMain
+          prediction={prediction}
+          explanation={explanation}
+          fileName={fileName}
+        />
       </main>
     </div>
   );
