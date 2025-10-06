@@ -3,6 +3,7 @@ import FileUpload from "./FileUpload";
 import LyricsUpload from "./LyricsUpload";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { bachOrBotApi } from "../api/backendService";
 
 // Props for landing main component
 interface LandingMainProps {
@@ -39,27 +40,20 @@ function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
     onLoadingChange(true);
 
     try {
-      // Consolidate all user inputs into one form data
-      const formData = new FormData();
-      formData.append("audio", selectedFile);
-      formData.append("lyrics", lyrics);
-
-      // TODO: Implement API on backend, this is placeholder for now
-      const response = await fetch("http://127.0.0.1:8000/api/analyze", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Analysis failed");
-      }
-
-      // Get result
-      const result = await response.json();
+      // Get responses for MLP and MusicLIME from model API
+      const [predictionResponse, explanationResponse] = await Promise.all([
+        bachOrBotApi.predict(selectedFile, lyrics),
+        bachOrBotApi.explain(selectedFile, lyrics),
+      ]);
 
       // Then navigate to the /results page with the data
       navigate("/results", {
-        state: { result, lyrics, fileName: selectedFile.name },
+        state: {
+          prediction: predictionResponse.results,
+          explanation: explanationResponse.results,
+          lyrics,
+          fileName: selectedFile.name,
+        },
       });
       window.scrollTo(0, 0);
     } catch (error) {
