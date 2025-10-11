@@ -16,8 +16,8 @@ interface ResultsMainProps {
 function ResultsMain({ prediction, explanation, fileName }: ResultsMainProps) {
   const navigate = useNavigate();
 
-  const confidenceScore = Math.round((prediction?.probability || 0) * 100);
-  const classification = prediction?.prediction || "Unknown";
+  const confidenceScore = prediction?.probability || 0;
+  const classification = prediction?.label || "Unknown";
 
   const handleAnalyze = () => {
     // Just navigate back to landing page
