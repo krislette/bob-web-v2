@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 
 function Landing() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
   const [modalState, setModalState] = useState({
     isOpen: false,
     title: "",
@@ -33,11 +34,23 @@ function Landing() {
     setModalState((prev) => ({ ...prev, isOpen: false }));
   };
 
+  const handleLoadingChange = (loading: boolean) => {
+    setIsLoading(loading);
+    if (!loading) {
+      // Reset completion when loading ends
+      setIsCompleted(false);
+    }
+  };
+
+  const handleComplete = () => {
+    setIsCompleted(true);
+  };
+
   // If loading, show only the loader
   if (isLoading) {
     return (
       <>
-        <Loader />
+        <Loader isCompleted={isCompleted} />
         {/* Modal still rendered even during loading */}
         <Modal
           isOpen={modalState.isOpen}
@@ -62,7 +75,11 @@ function Landing() {
         <Title />
 
         {/* Main content container */}
-        <LandingMain onLoadingChange={setIsLoading} onShowModal={showModal} />
+        <LandingMain
+          onLoadingChange={handleLoadingChange}
+          onComplete={handleComplete}
+          onShowModal={showModal}
+        />
       </main>
 
       {/* Modal always rendered at this level */}
