@@ -36,22 +36,19 @@ function Loader({ isCompleted = false }: LoaderProps) {
     if (isCompleted) return;
 
     // Define intervals for each status (in milliseconds)
-    // Adjusted for more steps, spreading over ~4 minutes
     const intervals = [
       0, // Show immediately
-      10000, // 10 seconds
       20000, // 20 seconds
-      30000, // 30 seconds
-      45000, // 45 seconds
-      60000, // 1 minute
-      75000, // 1 min 15 sec
-      90000, // 1.5 minutes
-      110000, // 1 min 50 sec
-      130000, // 2 min 10 sec
-      160000, // 2 min 40 sec
-      190000, // 3 min 10 sec
-      220000, // 3 min 40 sec
-      25000,
+      50000, // 50 seconds
+      80000, // 1 min 20 sec
+      120000, // 2 minutes
+      170000, // 2 min 50 sec
+      230000, // 3 min 50 sec
+      300000, // 5 minutes
+      380000, // 6 min 20 sec
+      470000, // 7 min 50 sec
+      560000, // 9 min 20 sec
+      600000, // 10 minutes
       // Never auto-show the last status (Complete!)
     ];
 
