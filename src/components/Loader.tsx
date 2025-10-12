@@ -75,10 +75,12 @@ function Loader({ isCompleted = false }: LoaderProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black-darkest px-4">
-      <div className="max-w-md w-full space-y-12">
+      <div className="max-w-md w-full space-y-15">
         {/* Cassette Tape Loader */}
-        <div className="flex justify-center">
+        <div className="loader-wrapper">
+          <div className="loader-hand loader-hand-left"></div>
           <div className="loader"></div>
+          <div className="loader-hand loader-hand-right"></div>
         </div>
 
         {/* Status Message */}
