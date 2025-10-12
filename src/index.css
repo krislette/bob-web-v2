@@ -55,8 +55,16 @@ body {
   padding: 0;
 }
 
+.loader-wrapper {
+  position: relative;
+  margin: auto;
+  width: fit-content;
+  overflow: visible;
+}
+
 .loader {
   margin: auto;
+  margin-bottom: 4rem;
   width: 100px;
   height: 30px;
   overflow: hidden;
@@ -81,7 +89,7 @@ body {
   bottom: -4px;
   transform: rotate(0deg);
   box-sizing: border-box;
-  animation: tape 4s linear infinite;
+  animation: tape 6s linear infinite, blink 6s ease-in-out infinite;
 }
 
 .loader:before {
@@ -100,5 +108,167 @@ body {
   }
   100% {
     transform: rotate(-360deg) scale(0.4);
+  }
+}
+
+@keyframes blink {
+  0%,
+  35% {
+    border-width: 18px 0;
+    border-style: solid;
+    border-radius: 0;
+    transform: rotate(0deg) scale(0.4, 0.15);
+  }
+  40% {
+    border-width: 3px;
+    border-style: dashed;
+    border-radius: 100%;
+    transform: rotate(0deg) scale(0.35);
+  }
+  45% {
+    border-width: 4px;
+    border-style: dashed;
+    border-radius: 100%;
+    transform: rotate(-10deg) scale(0.4);
+  }
+  50% {
+    transform: rotate(-60deg) scale(0.4);
+  }
+  85% {
+    transform: rotate(-300deg) scale(0.4);
+  }
+  90% {
+    border-width: 3px;
+    border-style: dashed;
+    border-radius: 100%;
+    transform: rotate(-320deg) scale(0.35);
+  }
+  95%,
+  100% {
+    border-width: 2px 0;
+    border-style: solid;
+    border-radius: 0;
+    transform: rotate(-360deg) scale(0.4, 0.15);
+  }
+}
+
+/* Robot hands */
+.loader-hand {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #ddd;
+  border-radius: 50%;
+  top: 50%;
+  z-index: 1;
+}
+
+/* Hand */
+.loader-hand:after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
+  background: #d0d0d0;
+}
+
+.loader-hand-left {
+  left: -60px;
+  transform-origin: 50% 12px;
+  animation: waveLeft 6s ease-in-out infinite;
+}
+
+.loader-hand-left:after {
+  left: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loader-hand-right {
+  right: -60px;
+  transform-origin: 50% 12px;
+  animation: waveRight 6s ease-in-out infinite;
+}
+
+.loader-hand-right:after {
+  right: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Waving animations */
+@keyframes waveLeft {
+  0%,
+  35% {
+    transform: translateY(20%) rotate(-90deg); /* Bend down low when sleeping */
+  }
+  40%,
+  42% {
+    transform: translateY(0%) rotate(-45deg); /* Starting to lift */
+  }
+  50%,
+  55% {
+    transform: translateY(-50%) rotate(15deg); /* Start waving */
+  }
+  60%,
+  70% {
+    transform: translateY(-50%) rotate(80deg); /* Wave up high */
+  }
+  75%,
+  80% {
+    transform: translateY(-50%) rotate(50deg); /* Wave down */
+  }
+  65%,
+  75% {
+    transform: translateY(-50%) rotate(70deg); /* Wave up again */
+  }
+  85% {
+    transform: translateY(-50%) rotate(15deg); /* Finishing wave */
+  }
+  90%,
+  95% {
+    transform: translateY(0%) rotate(-45deg); /* Going back down */
+  }
+  100% {
+    transform: translateY(20%) rotate(-90deg); /* Back to sleep position */
+  }
+}
+
+@keyframes waveRight {
+  0%,
+  35% {
+    transform: translateY(20%) rotate(90deg); /* Bend down low when sleeping */
+  }
+  40%,
+  42% {
+    transform: translateY(0%) rotate(45deg); /* Starting to lift */
+  }
+  50%,
+  55% {
+    transform: translateY(-50%) rotate(-15deg); /* Start waving */
+  }
+  60%,
+  70% {
+    transform: translateY(-50%) rotate(-80deg); /* Wave up high */
+  }
+  75%,
+  80% {
+    transform: translateY(-50%) rotate(-50deg); /* Wave down */
+  }
+  65%,
+  75% {
+    transform: translateY(-50%) rotate(-70deg); /* Wave up again */
+  }
+  85% {
+    transform: translateY(-50%) rotate(-15deg); /* Finishing wave */
+  }
+  90%,
+  95% {
+    transform: translateY(0%) rotate(45deg); /* Going back down */
+  }
+  100% {
+    transform: translateY(20%) rotate(90deg); /* Back to sleep position */
   }
 }
