@@ -85,10 +85,6 @@ function Loader({ isCompleted = false }: LoaderProps) {
 
         {/* Status Message */}
         <div className="text-center space-y-6">
-          <p className="text-white-custom text-lg font-montserrat">
-            {currentStatus}
-          </p>
-
           {/* Progress Bar */}
           <div className="w-full bg-black-dark rounded-full h-2 overflow-hidden">
             <div
@@ -96,6 +92,10 @@ function Loader({ isCompleted = false }: LoaderProps) {
               style={{ width: `${progressPercentage}%` }}
             ></div>
           </div>
+
+          <p className="text-white-custom text-lg font-montserrat">
+            {currentStatus}
+          </p>
         </div>
       </div>
     </div>
