@@ -8,10 +8,15 @@ import { bachOrBotApi } from "../api/backendService";
 // Props for landing main component
 interface LandingMainProps {
   onLoadingChange: (isLoading: boolean) => void;
+  onComplete: () => void;
   onShowModal: (title: string, message: string, buttonText?: string) => void;
 }
 
-function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
+function LandingMain({
+  onLoadingChange,
+  onComplete,
+  onShowModal,
+}: LandingMainProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [lyrics, setLyrics] = useState("");
   const navigate = useNavigate();
@@ -45,6 +50,12 @@ function LandingMain({ onLoadingChange, onShowModal }: LandingMainProps) {
         bachOrBotApi.predict(selectedFile, lyrics),
         bachOrBotApi.explain(selectedFile, lyrics),
       ]);
+
+      // Signal completion
+      onComplete();
+
+      // Wait to show "Complete!" message
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // Then navigate to the /results page with the data
       navigate("/results", {
