@@ -18,7 +18,7 @@ function LyricsExplanation({
   return (
     <div className="flex flex-col space-y-2 p-4 w-full max-w-3xl bg-black-dark-blue rounded-lg">
       <div className="flex justify-between w-full mb-4">
-        <h3>Lyrics that sounded most like {classification}:</h3>
+        <h3>Lyrics that sounded most {classification}:</h3>
         <h3>Weight:</h3>
       </div>
 
