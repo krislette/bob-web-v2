@@ -11,6 +11,7 @@ const loadingStatuses: string[] = [
   "Preparing classification model...",
   "Analyzing your song...",
   "Determining if it's 'Bach' or 'Bot'...",
+  "Calculating model accuracy...",
   "Generating detailed explanation...",
   "Building visual insights...",
   "Finalizing results...",
@@ -47,7 +48,8 @@ function Loader({ isCompleted = false }: LoaderProps) {
       300000, // 5 minutes
       380000, // 6 min 20 sec
       470000, // 7 min 50 sec
-      560000, // 9 min 20 sec
+      520000, // 8 min 40 sec
+      570000, // 9 min 30 sec
       600000, // 10 minutes
       // Never auto-show the last status (Complete!)
     ];
