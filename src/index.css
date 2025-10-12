@@ -64,7 +64,7 @@ body {
 
 .loader {
   margin: auto;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
   width: 100px;
   height: 30px;
   overflow: hidden;
@@ -89,7 +89,7 @@ body {
   bottom: -4px;
   transform: rotate(0deg);
   box-sizing: border-box;
-  animation: tape 6s linear infinite, blink 6s ease-in-out infinite;
+  animation: tape 8s linear infinite, blink 8s ease-in-out infinite;
 }
 
 .loader:before {
@@ -131,7 +131,20 @@ body {
     border-radius: 100%;
     transform: rotate(-10deg) scale(0.4);
   }
-  50% {
+  47% {
+    transform: rotate(-15deg) scale(0.42);
+  }
+  49% {
+    transform: rotate(-5deg) scale(0.38);
+  }
+  51% {
+    transform: rotate(-12deg) scale(0.41);
+  }
+  53% {
+    transform: rotate(-8deg) scale(0.4);
+  }
+  /* Now start spinning */
+  55% {
     transform: rotate(-60deg) scale(0.4);
   }
   85% {
@@ -157,7 +170,7 @@ body {
   position: absolute;
   width: 24px;
   height: 24px;
-  background: #ddd;
+  background: #aaa;
   border-radius: 50%;
   top: 50%;
   z-index: 1;
@@ -170,105 +183,168 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    70% 100%,
+    70% 30%,
+    30% 30%,
+    30% 100%,
+    0% 100%
+  );
   background: #d0d0d0;
 }
 
 .loader-hand-left {
-  left: -60px;
+  left: -55px;
   transform-origin: 50% 12px;
-  animation: waveLeft 6s ease-in-out infinite;
+  animation: waveLeft 8s ease-in-out infinite;
 }
 
 .loader-hand-left:after {
   left: -35px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(90deg);
 }
 
 .loader-hand-right {
-  right: -60px;
+  right: -55px;
   transform-origin: 50% 12px;
-  animation: waveRight 6s ease-in-out infinite;
+  animation: waveRight 8s ease-in-out infinite;
 }
 
 .loader-hand-right:after {
   right: -35px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(-90deg);
 }
 
 /* Waving animations */
 @keyframes waveLeft {
   0%,
-  35% {
-    transform: translateY(20%) rotate(-90deg); /* Bend down low when sleeping */
+  45% {
+    transform: translateY(20%) rotate(-90deg); /* Sleep */
   }
-  40%,
-  42% {
-    transform: translateY(0%) rotate(-45deg); /* Starting to lift */
+  48%,
+  50% {
+    transform: translateY(0%) rotate(-45deg); /* Lift up */
   }
-  50%,
-  55% {
-    transform: translateY(-50%) rotate(15deg); /* Start waving */
+  /* Fast waving starts */
+  53% {
+    transform: translateY(-50%) rotate(15deg);
   }
-  60%,
-  70% {
-    transform: translateY(-50%) rotate(80deg); /* Wave up high */
+  56% {
+    transform: translateY(-50%) rotate(80deg);
   }
-  75%,
+  59% {
+    transform: translateY(-50%) rotate(20deg);
+  }
+  62% {
+    transform: translateY(-50%) rotate(75deg);
+  }
+  65% {
+    transform: translateY(-50%) rotate(25deg);
+  }
+  68% {
+    transform: translateY(-50%) rotate(80deg);
+  }
+  71% {
+    transform: translateY(-50%) rotate(30deg);
+  }
+  74% {
+    transform: translateY(-50%) rotate(75deg);
+  }
+  77% {
+    transform: translateY(-50%) rotate(35deg);
+  }
   80% {
-    transform: translateY(-50%) rotate(50deg); /* Wave down */
+    transform: translateY(-50%) rotate(70deg);
   }
-  65%,
-  75% {
-    transform: translateY(-50%) rotate(70deg); /* Wave up again */
+  83% {
+    transform: translateY(-50%) rotate(40deg);
   }
-  85% {
-    transform: translateY(-50%) rotate(15deg); /* Finishing wave */
+  86% {
+    transform: translateY(-50%) rotate(65deg);
   }
-  90%,
-  95% {
-    transform: translateY(0%) rotate(-45deg); /* Going back down */
+  89% {
+    transform: translateY(-50%) rotate(20deg);
+  }
+  /* Slower transition back to sleep */
+  91% {
+    transform: translateY(-30%) rotate(-10deg); /* Still up, starting to lower */
+  }
+  93% {
+    transform: translateY(-10%) rotate(-30deg); /* Lowering more */
+  }
+  96% {
+    transform: translateY(5%) rotate(-60deg); /* Almost down */
   }
   100% {
-    transform: translateY(20%) rotate(-90deg); /* Back to sleep position */
+    transform: translateY(20%) rotate(-90deg); /* Fully asleep */
   }
 }
 
 @keyframes waveRight {
   0%,
-  35% {
-    transform: translateY(20%) rotate(90deg); /* Bend down low when sleeping */
+  45% {
+    transform: translateY(20%) rotate(90deg); /* Sleep */
   }
-  40%,
-  42% {
-    transform: translateY(0%) rotate(45deg); /* Starting to lift */
+  48%,
+  50% {
+    transform: translateY(0%) rotate(45deg); /* Lift up */
   }
-  50%,
-  55% {
-    transform: translateY(-50%) rotate(-15deg); /* Start waving */
+  /* Fast waving starts */
+  53% {
+    transform: translateY(-50%) rotate(-15deg);
   }
-  60%,
-  70% {
-    transform: translateY(-50%) rotate(-80deg); /* Wave up high */
+  56% {
+    transform: translateY(-50%) rotate(-80deg);
   }
-  75%,
+  59% {
+    transform: translateY(-50%) rotate(-20deg);
+  }
+  62% {
+    transform: translateY(-50%) rotate(-75deg);
+  }
+  65% {
+    transform: translateY(-50%) rotate(-25deg);
+  }
+  68% {
+    transform: translateY(-50%) rotate(-80deg);
+  }
+  71% {
+    transform: translateY(-50%) rotate(-30deg);
+  }
+  74% {
+    transform: translateY(-50%) rotate(-75deg);
+  }
+  77% {
+    transform: translateY(-50%) rotate(-35deg);
+  }
   80% {
-    transform: translateY(-50%) rotate(-50deg); /* Wave down */
+    transform: translateY(-50%) rotate(-70deg);
   }
-  65%,
-  75% {
-    transform: translateY(-50%) rotate(-70deg); /* Wave up again */
+  83% {
+    transform: translateY(-50%) rotate(-40deg);
   }
-  85% {
-    transform: translateY(-50%) rotate(-15deg); /* Finishing wave */
+  86% {
+    transform: translateY(-50%) rotate(-65deg);
   }
-  90%,
-  95% {
-    transform: translateY(0%) rotate(45deg); /* Going back down */
+  89% {
+    transform: translateY(-50%) rotate(-20deg);
+  }
+  /* Slower transition back to sleep */
+  91% {
+    transform: translateY(-30%) rotate(10deg); /* Still up, starting to lower */
+  }
+  93% {
+    transform: translateY(-10%) rotate(30deg); /* Lowering more */
+  }
+  96% {
+    transform: translateY(5%) rotate(60deg); /* Almost down */
   }
   100% {
-    transform: translateY(20%) rotate(90deg); /* Back to sleep position */
+    transform: translateY(20%) rotate(90deg); /* Fully asleep */
   }
 }
