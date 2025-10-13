@@ -19,9 +19,9 @@ function AudioExplanation({ features, classification }: AudioExplanationProps) {
     if (match) {
       const [, instrument, timeIndex] = match;
 
-      // Convert time index to seconds (each segment is 3 seconds)
-      const startSeconds = parseInt(timeIndex) * 3;
-      const endSeconds = startSeconds + 3;
+      // Convert time index to seconds (each segment is 12 seconds)
+      const startSeconds = parseInt(timeIndex) * 12;
+      const endSeconds = startSeconds + 12;
 
       // Format to MM:SS
       const formatTime = (seconds: number) => {
