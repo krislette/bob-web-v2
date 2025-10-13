@@ -1,4 +1,5 @@
 import { ScanText } from "lucide-react";
+import Tooltip from "./Tooltip";
 
 interface LyricsExplanationProps {
   features: Array<{
@@ -15,11 +16,38 @@ function LyricsExplanation({
 }: LyricsExplanationProps) {
   const maxWeight = Math.max(...features.map((f) => Math.abs(f.weight)), 0.001);
 
+  const tooltipContent = `**What are lyric weights?**
+Weights show how strongly each lyric influenced the classification. The AI analyzed specific words and phrases to find patterns typical of ${classification} music.
+
+**Positive weights**
+Values above 0 indicate this lyric has characteristics commonly found in ${classification} songs. Higher positive values mean stronger matching patterns.
+
+**Negative weights**
+Values below 0 suggest this lyric has characteristics more typical of ${
+    classification === "AI-Generated" ? "Human-Composed" : "AI-Generated"
+  } music, working against the current classification.
+
+**Weight magnitude**
+
+- 0.005+: Very strong indicator
+
+- 0.001-0.005: Moderate indicator
+
+- <0.001: Weak indicator
+
+**How to interpret**
+If you see a lyric with weight +0.0005, it means that phrase showed characteristics typical of ${classification} songs, which contributed positively to the final classification. If you see weight -0.0003, it means that phrase has characteristics more typical of ${
+    classification === "AI-Generated" ? "Human-Composed" : "AI-Generated"
+  } songs, which worked against the ${classification} classification.`;
+
   return (
     <div className="flex flex-col space-y-2 p-4 w-full max-w-3xl bg-black-dark-blue rounded-lg">
       <div className="flex justify-between w-full mb-4">
         <h3>Lyrics that sounded most {classification}:</h3>
-        <h3>Weight:</h3>
+        <div className="flex items-center">
+          <h3>Weight:</h3>
+          <Tooltip content={tooltipContent} />
+        </div>
       </div>
 
       <div className="space-y-3">
