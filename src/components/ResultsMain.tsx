@@ -4,6 +4,7 @@ import ResultPill from "./ResultPill";
 import { useNavigate } from "react-router-dom";
 import AudioExplanation from "./AudioExplanation";
 import LyricsExplanation from "./LyricsExplanation";
+import { adjustConfidenceScore } from "../utils/confidenceAdjuster";
 
 // Props for the main result body component
 interface ResultsMainProps {
@@ -16,7 +17,10 @@ interface ResultsMainProps {
 function ResultsMain({ prediction, explanation, fileName }: ResultsMainProps) {
   const navigate = useNavigate();
 
-  const confidenceScore = Math.round(prediction?.probability || 0);
+  const confidenceScore = adjustConfidenceScore(
+    prediction?.confidence || 0,
+    97
+  );
   const classification = prediction?.label || "Unknown";
 
   const handleAnalyze = () => {
