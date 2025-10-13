@@ -5,10 +5,10 @@ Repository for the tool used to demonstrate the model under the same name, <a hr
 ## Todo
 
 - [x] Document this repo
-- [ ] Make it fully responsive (currently at ~70% as I have estimated)
-- [ ] Integrate API
-- [ ] Finalize XAI results display
-- [ ] More UI tweaks(?)
+- [ ] Make it fully responsive (currently at ~85% as I have estimated)
+- [x] Integrate API
+- [x] Finalize XAI results display
+- [x] More UI tweaks(?)
 - [ ] Add license
 
 ## Run
