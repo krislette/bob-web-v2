@@ -8,10 +8,10 @@ interface ResultPillProps {
 function ResultPill({ classification }: ResultPillProps) {
   return (
     <div
-      className={`flex p-3 sm:p-4 w-full max-w-xs sm:max-w-sm md:max-w-md justify-center border-2 rounded-full text-white-custom ${
+      className={`flex p-3 sm:p-4 w-full max-w-xs sm:max-w-sm md:max-w-md justify-center border-2 rounded-full text-black-dark dark:text-white-custom ${
         classification === "AI-Generated"
-          ? "bg-red-custom border-red-light"
-          : "bg-green-custom border-green-light"
+          ? "bg-red-300 dark:bg-red-custom border-red-light"
+          : "bg-green-300 dark:bg-green-custom border-green-light"
       }`}
     >
       {classification === "AI-Generated" ? (
