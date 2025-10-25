@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
-    <div className="min-h-screen bg-black-darkest text-white-custom">
+    <div className="min-h-screen">
       {/* Main website */}
       <BrowserRouter>
         <Routes>
