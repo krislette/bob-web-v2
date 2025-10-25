@@ -20,7 +20,7 @@ function ConfidenceBar({
       )}
 
       {/* Progress bar color changes, which depends on the classification as well */}
-      <div className="w-full bg-gray-700 rounded-full h-3">
+      <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-3">
         <div
           className={`h-3 rounded-full transition-all duration-500 ${
             classification === "AI-Generated"
