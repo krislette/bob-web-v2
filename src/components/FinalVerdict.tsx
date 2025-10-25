@@ -1,4 +1,4 @@
-import CheckItem from "./CheckItem";
+import { CheckCircle2, AlertTriangle } from "lucide-react";
 
 interface FinalVerdictProps {
   multimodalClass: string;
@@ -6,6 +6,7 @@ interface FinalVerdictProps {
   multimodalConfidence: number;
   audioOnlyConfidence: number;
   fileName: string;
+  multimodalIsHigher: boolean;
 }
 
 function FinalVerdict({
@@ -14,40 +15,60 @@ function FinalVerdict({
   multimodalConfidence,
   audioOnlyConfidence,
   fileName,
+  multimodalIsHigher,
 }: FinalVerdictProps) {
   const sameClassification = multimodalClass === audioOnlyClass;
 
+  const VerdictItem = ({
+    type,
+    children,
+  }: {
+    type: "success" | "warning";
+    children: React.ReactNode;
+  }) => {
+    const Icon = type === "success" ? CheckCircle2 : AlertTriangle;
+    const iconColor = type === "success" ? "text-green-400" : "text-yellow-400";
+    const bgColor = type === "success" ? "bg-green-500/20" : "bg-yellow-500/20";
+
+    return (
+      <div className="flex items-start space-x-3">
+        <div className={`${bgColor} p-1.5 rounded-full flex-shrink-0`}>
+          <Icon className={`w-4 h-4 ${iconColor}`} />
+        </div>
+        <p className="text-sm">{children}</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="space-y-3">
-      <h3 className="text-lg font-semibold">Final Verdict</h3>
+    <div className="bg-black-darker p-6 rounded-xl space-y-3">
+      <h3 className="text-lg font-semibold font-montserrat">Final Verdict</h3>
 
       {sameClassification ? (
         <>
-          <CheckItem type="success">
+          <VerdictItem type="success">
             The Multimodal model correctly identified the song "{fileName}" as{" "}
-            {multimodalClass} with a {(multimodalConfidence * 100).toFixed(1)}%
+            {multimodalClass} with a {multimodalConfidence.toFixed(1)}%
             confidence score.
-          </CheckItem>
-          <CheckItem type="success">
+          </VerdictItem>
+          <VerdictItem type="success">
             The Unimodal model also classified it as {audioOnlyClass} but with a{" "}
             {audioOnlyConfidence > multimodalConfidence ? "higher" : "lower"}{" "}
-            {(audioOnlyConfidence * 100).toFixed(1)}% confidence.
-          </CheckItem>
+            {audioOnlyConfidence.toFixed(1)}% confidence.
+          </VerdictItem>
           <p className="text-xs text-gray-400 italic">
-            Both models arrived at the correct classification; however, the
-            multimodal model demonstrated{" "}
-            {multimodalConfidence > audioOnlyConfidence ? "stronger" : "weaker"}{" "}
-            confidence, and deeper contextual understanding.
+            {multimodalIsHigher
+              ? "Both models arrived at the correct classification; however, the multimodal model demonstrated stronger confidence and deeper contextual understanding."
+              : "Both models arrived at the correct classification. The unimodal model showed higher confidence, while the multimodal model provided additional contextual insights from lyrics analysis."}
           </p>
         </>
       ) : (
         <>
-          <CheckItem type="warning">
+          <VerdictItem type="warning">
             The models disagree: Multimodal classified as {multimodalClass} (
-            {(multimodalConfidence * 100).toFixed(1)}%) while Unimodal
-            classified as {audioOnlyClass} (
-            {(audioOnlyConfidence * 100).toFixed(1)}%).
-          </CheckItem>
+            {multimodalConfidence.toFixed(1)}%) while Unimodal classified as{" "}
+            {audioOnlyClass} ({audioOnlyConfidence.toFixed(1)}%).
+          </VerdictItem>
           <p className="text-xs text-gray-400 italic">
             The disagreement suggests the lyrics provide significant additional
             context that influences the classification.
