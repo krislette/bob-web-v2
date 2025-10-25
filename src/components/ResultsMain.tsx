@@ -1,27 +1,23 @@
 import Button from "./Button";
-import ConfidenceBar from "./ConfidenceBar";
-import ResultPill from "./ResultPill";
 import { useNavigate } from "react-router-dom";
-import AudioExplanation from "./AudioExplanation";
-import LyricsExplanation from "./LyricsExplanation";
-import { adjustConfidenceScore } from "../utils/confidenceAdjuster";
+import ModalityPanel from "./ModalityPanel";
+import ComparisonSummary from "./ComparisonSummary";
 
 // Props for the main result body component
 interface ResultsMainProps {
-  prediction?: any;
-  explanation?: any;
-  lyrics?: string;
+  multimodal?: {
+    prediction: any;
+    explanation: any;
+  };
+  audioOnly?: {
+    prediction: any;
+    explanation: any;
+  };
   fileName?: string;
 }
 
-function ResultsMain({ prediction, explanation, fileName }: ResultsMainProps) {
+function ResultsMain({ multimodal, audioOnly, fileName }: ResultsMainProps) {
   const navigate = useNavigate();
-
-  const confidenceScore = adjustConfidenceScore(
-    prediction?.confidence || 0,
-    97
-  );
-  const classification = prediction?.label || "Unknown";
 
   const handleAnalyze = () => {
     // Just navigate back to landing page
@@ -30,59 +26,48 @@ function ResultsMain({ prediction, explanation, fileName }: ResultsMainProps) {
   };
 
   return (
-    <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 pb-6 md:pb-10 rounded-xl mt-4 sm:mt-6 md:mt-8 mx-auto max-w-3xl space-y-6 md:space-y-8">
-      {/* Main result indicator pill */}
-      <ResultPill classification={classification} />
-
-      {/* Confidence container */}
-      <div className="w-full max-w-3xl space-y-3">
-        <ConfidenceBar
-          percentage={confidenceScore}
-          label="Confidence"
-          classification={classification}
-        />
-      </div>
-
-      {/* File name display - personal additiones */}
+    <div className="space-y-6">
+      {/* File name display */}
       {fileName && (
         <p className="text-sm text-gray-400">
           Analysis results for: <span className="text-white">{fileName}</span>
         </p>
       )}
 
-      {/* Result caption */}
-      <p className="text-justify max-w-3xl">
-        This song was classified as <strong>{classification}</strong> because
-        certain lyrics and audio segments closely matched patterns commonly
-        found in
-        {classification === "AI-Generated"
-          ? " AI-generated songs."
-          : " human-composed songs."}{" "}
-        The top contributing factors are shown below:
-      </p>
+      {/* Dual Panel Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Multimodal Panel */}
+        {multimodal && (
+          <ModalityPanel
+            title="MULTIMODAL"
+            prediction={multimodal.prediction}
+            explanation={multimodal.explanation}
+            showLyrics={true}
+          />
+        )}
 
-      {/* Lyrics XAI Results */}
-      <LyricsExplanation
-        features={
-          explanation?.explanations?.filter(
-            (f: any) => f.modality === "lyrics"
-          ) || []
-        }
-        classification={classification}
-      />
+        {/* Unimodal Panel */}
+        {audioOnly && (
+          <ModalityPanel
+            title="UNIMODAL"
+            prediction={audioOnly.prediction}
+            explanation={audioOnly.explanation}
+            showLyrics={false}
+          />
+        )}
+      </div>
 
-      {/* Audio XAI Reults */}
-      <AudioExplanation
-        features={
-          explanation?.explanations?.filter(
-            (f: any) => f.modality === "audio"
-          ) || []
-        }
-        classification={classification}
-      />
+      {/* Comparison Summary Section */}
+      {multimodal && audioOnly && (
+        <ComparisonSummary
+          multimodal={multimodal}
+          audioOnly={audioOnly}
+          fileName={fileName || "Unknown"}
+        />
+      )}
 
-      {/* Button */}
-      <div className="flex flex-col space-y-2 w-full max-w-3xl">
+      {/* Analyze Another Music Button */}
+      <div className="flex flex-col space-y-2 w-full max-w-3xl mx-auto">
         <Button onClick={handleAnalyze} disabled={false} />
       </div>
     </div>
