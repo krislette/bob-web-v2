@@ -5,6 +5,9 @@
 /* Tailwind import */
 @import "tailwindcss";
 
+/* Activate dark mode */
+@variant dark (&:where(.dark, .dark *));
+
 /* Add custom fonts & colors to tailwind */
 @theme {
   --font-montserrat: "Montserrat", sans-serif;
@@ -47,12 +50,28 @@
   background-color: var(--color-white-custom);
 }
 
+/* Light mode scrollbar */
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background-color: var(--color-black-darkest);
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-black-darkest);
+}
+
 body {
   font-family: "Poppins";
   background-color: var(--color-black-darkest);
-  color: var(--color-white);
+  color: var(--color-white-custom);
   margin: 0;
   padding: 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Light mode override */
+:root:not(.dark) body {
+  background-color: var(--color-white-custom);
+  color: var(--color-text-primary);
 }
 
 .loader-wrapper {
