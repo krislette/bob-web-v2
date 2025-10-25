@@ -74,7 +74,7 @@ function Loader({ isCompleted = false }: LoaderProps) {
     : Math.min((currentStatusIndex / (loadingStatuses.length - 1)) * 95, 95);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black-darkest px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black-darkest px-4">
       <div className="max-w-md w-full space-y-15">
         {/* Cassette Tape Loader */}
         <div className="loader-wrapper">
@@ -86,14 +86,14 @@ function Loader({ isCompleted = false }: LoaderProps) {
         {/* Status Message */}
         <div className="text-center space-y-6">
           {/* Progress Bar */}
-          <div className="w-full bg-black-dark rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-gray-300 dark:bg-black-dark rounded-full h-2 overflow-hidden">
             <div
-              className="bg-white-custom h-2 rounded-full transition-all duration-1000 ease-out"
+              className="bg-gray-700 dark:bg-white-custom h-2 rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${progressPercentage}%` }}
             ></div>
           </div>
 
-          <p className="text-white-custom text-lg font-montserrat">
+          <p className="text-gray-900 dark:text-white-custom text-lg font-montserrat">
             {currentStatus}
           </p>
         </div>

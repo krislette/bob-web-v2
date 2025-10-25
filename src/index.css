@@ -367,3 +367,33 @@ body {
     transform: translateY(20%) rotate(90deg); /* Fully asleep */
   }
 }
+
+/* Light mode loader colors */
+:root:not(.dark) .loader {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 35px 0 -5px #666, 0 -5px 0 0px #999, 0 -25px 0 -5px #333,
+    -25px -30px 0 0px #999, -25px 30px 0 0px #999, 25px -30px 0 0px #999,
+    25px 30px 0 0px #999, 20px 10px 0 5px #999, 20px -10px 0 5px #999,
+    -20px -10px 0 5px #999, -20px 10px 0 5px #999;
+}
+
+:root:not(.dark) .loader:after,
+:root:not(.dark) .loader:before {
+  border-color: #333;
+}
+
+:root:not(.dark) .loader:before {
+  box-shadow: 0 0 0 4px #333, 0 0 0 34px #fff;
+}
+
+:root:not(.dark) .loader:after {
+  box-shadow: 0 0 0 4px #333, 0 0 0 65px #fff;
+}
+
+:root:not(.dark) .loader-hand {
+  background: #666;
+}
+
+:root:not(.dark) .loader-hand:after {
+  background: #888;
+}
