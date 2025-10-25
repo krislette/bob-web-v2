@@ -7,8 +7,8 @@ function Results() {
   // Use the location api
   const location = useLocation();
 
-  // To get the API results passed by the landing page
-  const { prediction, explanation, fileName } = location.state || {};
+  // Get the new data structure from navigation state
+  const { multimodal, audioOnly, fileName } = location.state || {};
 
   return (
     <div>
@@ -22,8 +22,8 @@ function Results() {
 
         {/* Main content container */}
         <ResultsMain
-          prediction={prediction}
-          explanation={explanation}
+          multimodal={multimodal}
+          audioOnly={audioOnly}
           fileName={fileName}
         />
       </main>
