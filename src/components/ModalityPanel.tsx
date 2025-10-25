@@ -34,7 +34,7 @@ function ModalityPanel({
   return (
     <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 rounded-xl space-y-4 md:space-y-6">
       {/* Title */}
-      <h3 className="text-lg md:text-xl font-bold uppercase tracking-wider">
+      <h3 className="text-lg md:text-xl font-semibold font-montserrat uppercase tracking-wider">
         {title}
       </h3>
 

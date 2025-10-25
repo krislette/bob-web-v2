@@ -26,7 +26,7 @@ function ResultsMain({ multimodal, audioOnly, fileName }: ResultsMainProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-7xl mx-auto space-y-8">
       {/* File name display */}
       {fileName && (
         <p className="text-sm text-gray-400">
