@@ -30,13 +30,21 @@ export interface ExplanationResult {
   };
 }
 
-export interface ApiResponse<T> {
+export interface MultimodalApiResponse {
   status: string;
   lyrics: string;
   audio_file_name: string;
   audio_content_type: string;
   audio_file_size: number;
-  results: T;
+  results: ExplanationResult;
+}
+
+export interface AudioOnlyApiResponse {
+  status: string;
+  audio_file_name: string;
+  audio_content_type: string;
+  audio_file_size: number;
+  results: ExplanationResult;
 }
 
 // Get API base URL from env
@@ -44,41 +52,77 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export const bachOrBotApi = {
-  async predict(
+  // Multimodal prediction
+  async predictMultimodal(
     audioFile: File,
     lyrics: string
-  ): Promise<ApiResponse<PredictionResult>> {
+  ): Promise<MultimodalApiResponse> {
     const formData = new FormData();
     formData.append("audio_file", audioFile);
     formData.append("lyrics", lyrics);
 
-    const response = await fetch(`${API_BASE_URL}/api/v1/predict`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/predict/multimodal`, {
       method: "POST",
       body: formData,
     });
 
     if (!response.ok) {
-      throw new Error(`Prediction failed: ${response.statusText}`);
+      throw new Error(`Multimodal prediction failed: ${response.statusText}`);
     }
 
     return response.json();
   },
 
-  async explain(
-    audioFile: File,
-    lyrics: string
-  ): Promise<ApiResponse<ExplanationResult>> {
+  // Audio-only prediction
+  async predictAudio(audioFile: File): Promise<AudioOnlyApiResponse> {
     const formData = new FormData();
     formData.append("audio_file", audioFile);
-    formData.append("lyrics", lyrics);
 
-    const response = await fetch(`${API_BASE_URL}/api/v1/explain`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/predict/audio`, {
       method: "POST",
       body: formData,
     });
 
     if (!response.ok) {
-      throw new Error(`Explanation failed: ${response.statusText}`);
+      throw new Error(`Audio-only prediction failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
+  // Multimodal explanation
+  async explainMultimodal(
+    audioFile: File,
+    lyrics: string
+  ): Promise<MultimodalApiResponse> {
+    const formData = new FormData();
+    formData.append("audio_file", audioFile);
+    formData.append("lyrics", lyrics);
+
+    const response = await fetch(`${API_BASE_URL}/api/v1/explain/multimodal`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Multimodal explanation failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
+  // Audio-only explanation
+  async explainAudio(audioFile: File): Promise<AudioOnlyApiResponse> {
+    const formData = new FormData();
+    formData.append("audio_file", audioFile);
+
+    const response = await fetch(`${API_BASE_URL}/api/v1/explain/audio`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Audio-only explanation failed: ${response.statusText}`);
     }
 
     return response.json();
