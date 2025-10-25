@@ -45,10 +45,17 @@ function LandingMain({
     onLoadingChange(true);
 
     try {
-      // Get responses for MLP and MusicLIME from model API
-      const [predictionResponse, explanationResponse] = await Promise.all([
-        bachOrBotApi.predict(selectedFile, lyrics),
-        bachOrBotApi.explain(selectedFile, lyrics),
+      // Call all 4 endpoints
+      const [
+        multimodalPrediction,
+        audioOnlyPrediction,
+        multimodalExplanation,
+        audioOnlyExplanation,
+      ] = await Promise.all([
+        bachOrBotApi.predictMultimodal(selectedFile, lyrics),
+        bachOrBotApi.predictAudio(selectedFile),
+        bachOrBotApi.explainMultimodal(selectedFile, lyrics),
+        bachOrBotApi.explainAudio(selectedFile),
       ]);
 
       // Signal completion
@@ -57,11 +64,17 @@ function LandingMain({
       // Wait to show "Complete!" message
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Then navigate to the /results page with the data
+      // Navigate to results page with all results
       navigate("/results", {
         state: {
-          prediction: predictionResponse.results,
-          explanation: explanationResponse.results,
+          multimodal: {
+            prediction: multimodalPrediction.results,
+            explanation: multimodalExplanation.results,
+          },
+          audioOnly: {
+            prediction: audioOnlyPrediction.results,
+            explanation: audioOnlyExplanation.results,
+          },
           lyrics,
           fileName: selectedFile.name,
         },
