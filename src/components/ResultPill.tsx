@@ -8,7 +8,7 @@ interface ResultPillProps {
 function ResultPill({ classification }: ResultPillProps) {
   return (
     <div
-      className={`flex p-3 sm:p-4 w-full max-w-xs sm:max-w-sm md:max-w-md justify-center border-2 rounded-full ${
+      className={`flex p-3 sm:p-4 w-full max-w-xs sm:max-w-sm md:max-w-md justify-center border-2 rounded-full text-white-custom ${
         classification === "AI-Generated"
           ? "bg-red-custom border-red-light"
           : "bg-green-custom border-green-light"

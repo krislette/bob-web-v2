@@ -41,7 +41,7 @@ If you see a lyric with weight +0.0005, it means that phrase showed characterist
   } songs, which worked against the ${classification} classification.`;
 
   return (
-    <div className="flex flex-col space-y-2 p-4 w-full max-w-3xl bg-black-dark-blue rounded-lg">
+    <div className="flex flex-col space-y-2 p-4 w-full max-w-3xl text-black-dark dark:text-white-custom bg-gray-200 dark:bg-black-dark-blue rounded-lg">
       <div className="flex justify-between w-full mb-4">
         <h3>Lyrics that sounded most {classification}:</h3>
         <div className="flex items-center">
@@ -57,7 +57,7 @@ If you see a lyric with weight +0.0005, it means that phrase showed characterist
               key={index}
               className="flex items-center space-x-4 space-y-2.5"
             >
-              <div className="flex-1 text-center text-xs text-gray-300">
+              <div className="flex-1 text-center text-xs text-black-dark dark:text-gray-300">
                 "{feature.feature_text}"
               </div>
               <div className="flex-[1.5] px-2">
@@ -70,7 +70,7 @@ If you see a lyric with weight +0.0005, it means that phrase showed characterist
                   ></div>
                 </div>
               </div>
-              <div className="w-16 text-right text-sm font-mono text-gray-300">
+              <div className="w-16 text-right text-sm font-mono text-black-dark dark:text-gray-300">
                 {feature.weight.toFixed(4)}
               </div>
             </div>

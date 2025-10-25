@@ -13,8 +13,8 @@ function Button({ onClick, disabled }: ButtonProps) {
     <button
       className={`w-full p-3 sm:p-4 rounded-lg ${
         disabled
-          ? "bg-gray-600 cursor-not-allowed"
-          : "bg-blue-custom hover:bg-blue-custom/80 cursor-pointer"
+          ? "bg-gray-600 text-gray-200 cursor-not-allowed"
+          : "bg-blue-custom text-white-custom hover:bg-blue-custom/80 cursor-pointer"
       }`}
       onClick={onClick}
       disabled={disabled}

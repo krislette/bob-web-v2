@@ -35,14 +35,16 @@ function FinalVerdict({
         <div className={`${bgColor} p-1.5 rounded-full flex-shrink-0`}>
           <Icon className={`w-4 h-4 ${iconColor}`} />
         </div>
-        <p className="text-sm">{children}</p>
+        <p className="text-sm text-gray-700 dark:text-white">{children}</p>
       </div>
     );
   };
 
   return (
-    <div className="bg-black-darker p-6 rounded-xl space-y-3">
-      <h3 className="text-lg font-semibold font-montserrat">Final Verdict</h3>
+    <div className="bg-gray-100 dark:bg-black-darker p-6 rounded-xl space-y-3">
+      <h3 className="text-lg font-semibold font-montserrat text-gray-900 dark:text-white">
+        Final Verdict
+      </h3>
 
       {sameClassification ? (
         <>
@@ -56,7 +58,7 @@ function FinalVerdict({
             {audioOnlyConfidence > multimodalConfidence ? "higher" : "lower"}{" "}
             {audioOnlyConfidence.toFixed(1)}% confidence.
           </VerdictItem>
-          <p className="text-xs text-gray-400 italic">
+          <p className="text-xs text-gray-500 dark:text-gray-400 italic">
             {multimodalIsHigher
               ? "Both models arrived at the correct classification; however, the multimodal model demonstrated stronger confidence and deeper contextual understanding."
               : "Both models arrived at the correct classification. The unimodal model showed higher confidence, while the multimodal model provided additional contextual insights from lyrics analysis."}
@@ -69,7 +71,7 @@ function FinalVerdict({
             {multimodalConfidence.toFixed(1)}%) while Unimodal classified as{" "}
             {audioOnlyClass} ({audioOnlyConfidence.toFixed(1)}%).
           </VerdictItem>
-          <p className="text-xs text-gray-400 italic">
+          <p className="text-xs text-gray-500 dark:text-gray-400 italic">
             The disagreement suggests the lyrics provide significant additional
             context that influences the classification.
           </p>

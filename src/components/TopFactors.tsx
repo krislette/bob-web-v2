@@ -56,7 +56,7 @@ function TopFactors({
         </div>
         <div className="flex-1">
           <span className={`font-semibold ${textColor}`}>{feature.label}:</span>
-          <span className="text-white ml-2">
+          <span className="text-gray-900 dark:text-white ml-2">
             {feature.data?.feature_text || "No data"}
           </span>
         </div>
@@ -65,8 +65,10 @@ function TopFactors({
   };
 
   return (
-    <div className="bg-black-darker p-6 rounded-xl space-y-4">
-      <h3 className="text-lg font-semibold font-montserrat">Top Factors</h3>
+    <div className="bg-gray-100 dark:bg-black-darker p-6 rounded-xl space-y-4">
+      <h3 className="text-lg font-semibold font-montserrat text-gray-900 dark:text-white">
+        Top Factors
+      </h3>
       <FeatureItem feature={firstFeature} />
       <FeatureItem feature={secondFeature} />
     </div>

@@ -95,11 +95,13 @@ function LandingMain({
   const isFormValid = selectedFile !== null && lyrics.trim().length > 0;
 
   return (
-    <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 pb-6 md:pb-10 rounded-xl mt-4 sm:mt-6 md:mt-8 mx-auto max-w-3xl space-y-6 md:space-y-8">
+    <div className="bg-gray-100 dark:bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 pb-6 md:pb-10 rounded-xl mt-4 sm:mt-6 md:mt-8 mx-auto max-w-3xl space-y-6 md:space-y-8">
       {/* Container for the audio upload portion */}
       <div className="flex flex-col space-y-2 w-full max-w-3xl">
         {/* Title */}
-        <h3 className="flex flex-start font-montserrat">Audio File</h3>
+        <h3 className="flex flex-start font-montserrat text-gray-900 dark:text-white">
+          Audio File
+        </h3>
 
         {/* File upload component */}
         <FileUpload

@@ -22,18 +22,18 @@ function ConfidenceComparison({
     : multimodalConfidence;
 
   return (
-    <div className="bg-black-darker p-6 rounded-xl space-y-4">
-      <h3 className="text-lg font-semibold font-montserrat">
+    <div className="bg-gray-100 dark:bg-black-darker p-6 rounded-xl space-y-4">
+      <h3 className="text-lg font-semibold font-montserrat text-gray-900 dark:text-white">
         Confidence Comparison
       </h3>
 
       {/* First model (higher confidence) */}
       <div className="space-y-2">
-        <div className="flex justify-between text-sm">
+        <div className="flex justify-between text-sm text-black-dark dark:text-white">
           <span>{firstModel}</span>
           <span>{firstConfidence.toFixed(0)}%</span>
         </div>
-        <div className="w-full bg-gray-700 rounded-full h-3">
+        <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-3">
           <div
             className="bg-blue-500 h-3 rounded-full transition-all duration-500"
             style={{ width: `${firstConfidence}%` }}
@@ -43,11 +43,11 @@ function ConfidenceComparison({
 
       {/* Second model (lower confidence) */}
       <div className="space-y-2">
-        <div className="flex justify-between text-sm">
+        <div className="flex justify-between text-sm text-black-dark dark:text-white">
           <span>{secondModel}</span>
           <span>{secondConfidence.toFixed(0)}%</span>
         </div>
-        <div className="w-full bg-gray-700 rounded-full h-3">
+        <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-3">
           <div
             className="bg-blue-400 h-3 rounded-full transition-all duration-500"
             style={{ width: `${secondConfidence}%` }}
@@ -56,7 +56,7 @@ function ConfidenceComparison({
       </div>
 
       {/* Comparison text */}
-      <p className="text-sm text-gray-300">
+      <p className="text-sm text-gray-600 dark:text-gray-300">
         {firstModel} shows a {confidenceDiff.toFixed(1)}% higher confidence than{" "}
         {secondModel.toLowerCase()}.
       </p>

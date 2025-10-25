@@ -12,9 +12,11 @@ function KeyInsights({
   const confidenceDiff = Math.abs(multimodalConfidence - audioOnlyConfidence);
 
   return (
-    <div className="bg-black-darker p-6 rounded-xl space-y-3">
-      <h3 className="text-lg font-semibold font-montserrat">Key Insights</h3>
-      <ul className="space-y-2 text-sm list-disc list-inside text-gray-300">
+    <div className="bg-gray-100 dark:bg-black-darker p-6 rounded-xl space-y-3">
+      <h3 className="text-lg font-semibold font-montserrat text-gray-900 dark:text-white">
+        Key Insights
+      </h3>
+      <ul className="space-y-2 text-sm list-disc list-inside text-gray-600 dark:text-gray-300">
         <li>
           {multimodalIsHigher ? (
             <>

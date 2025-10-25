@@ -14,8 +14,8 @@ function ConfidenceBar({
     <div className="w-full space-y-2">
       {label && (
         <div className="flex justify-between text-xs sm:text-sm">
-          <span className="text-gray-300">{label}</span>
-          <span className="text-white font-semibold">{percentage}%</span>
+          <span className="text-gray-800 dark:text-gray-300">{label}</span>
+          <span className="dark:text-white font-semibold">{percentage}%</span>
         </div>
       )}
 

@@ -17,7 +17,7 @@ function LyricsUpload({ onLyricsChange }: LyricsUploadProps) {
   return (
     <div className="w-full space-y-3">
       {/* Instruction for users */}
-      <p className="text-sm text-gray-400 text-left">
+      <p className="text-sm text-gray-600 dark:text-gray-400 text-left">
         Enter lyrics line by line to improve accuracy. Each line should contain
         one lyrical phrase or verse.
       </p>
@@ -26,7 +26,7 @@ function LyricsUpload({ onLyricsChange }: LyricsUploadProps) {
       <textarea
         value={lyrics}
         onChange={handleTextAreaChange}
-        className="border-2 border-gray-600 focus:border-gray-500 focus:outline-none transition-colors duration-200 w-full min-h-48 sm:min-h-52 md:min-h-60 rounded-lg bg-black-dark text-white placeholder-gray-600 text-sm resize-none p-3 sm:p-4"
+        className="border-2 border-gray-400 dark:border-gray-600 focus:border-gray-500 focus:outline-none transition-colors duration-200 w-full min-h-48 sm:min-h-52 md:min-h-60 rounded-lg bg-white dark:bg-black-dark text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 text-sm resize-none p-3 sm:p-4"
         style={{
           animation: "fadeIn 0.2s ease-out",
           scrollbarWidth: "thin",

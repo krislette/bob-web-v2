@@ -42,7 +42,7 @@ function ComparisonSummary({
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col items-center mt-6 space-y-8">
-      <h2 className="text-2xl md:text-3xl font-montserrat font-[600]">
+      <h2 className="text-2xl md:text-3xl font-montserrat font-[600] text-gray-900 dark:text-white">
         Comparison Summary
       </h2>
 

@@ -78,11 +78,11 @@ function Tooltip({ content, className = "" }: TooltipProps) {
       <button
         ref={iconRef}
         onClick={() => setIsVisible(!isVisible)}
-        className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black-darker hover:bg-black-dark-blue transition-colors duration-200 ml-2 cursor-pointer"
+        className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-400 hover:bg-gray-300 dark:bg-black-darker dark:hover:bg-black-dark-blue transition-colors duration-200 ml-2 cursor-pointer"
         aria-label="More information"
         type="button"
       >
-        <Info className="w-3.5 h-3.5 text-gray-400 hover:text-white transition-colors" />
+        <Info className="w-3.5 h-3.5 text-black-dark hover:text-gray-500 dark:text-gray-400 dark:hover:text-white transition-colors" />
       </button>
 
       {/* Tooltip Content */}

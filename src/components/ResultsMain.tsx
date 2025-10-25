@@ -29,8 +29,11 @@ function ResultsMain({ multimodal, audioOnly, fileName }: ResultsMainProps) {
     <div className="max-w-7xl mx-auto space-y-8">
       {/* File name display */}
       {fileName && (
-        <p className="text-sm text-gray-400">
-          Analysis results for: <span className="text-white">{fileName}</span>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Analysis results for:{" "}
+          <span className="text-black-darkest dark:text-white-custom">
+            {fileName}
+          </span>
         </p>
       )}
 

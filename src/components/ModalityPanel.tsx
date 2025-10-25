@@ -32,9 +32,9 @@ function ModalityPanel({
     explanation?.explanations?.filter((f: any) => f.modality === "audio") || [];
 
   return (
-    <div className="bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 rounded-xl space-y-4 md:space-y-6">
+    <div className="bg-gray-100 dark:bg-black-darker flex flex-col items-center p-4 sm:p-6 md:p-8 rounded-xl space-y-4 md:space-y-6">
       {/* Title */}
-      <h3 className="text-lg md:text-xl font-semibold font-montserrat uppercase tracking-wider">
+      <h3 className="text-lg md:text-xl font-semibold font-montserrat uppercase tracking-wider text-gray-900 dark:text-white">
         {title}
       </h3>
 
@@ -51,7 +51,7 @@ function ModalityPanel({
       </div>
 
       {/* Explanation Text */}
-      <p className="text-sm text-justify">
+      <p className="text-sm text-justify text-gray-700 dark:text-white">
         This song was classified as <strong>{classification}</strong> because
         certain {showLyrics ? "lyrics and " : ""}audio segments closely matched
         patterns commonly found in
