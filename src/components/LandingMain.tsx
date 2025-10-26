@@ -45,18 +45,32 @@ function LandingMain({
     onLoadingChange(true);
 
     try {
-      // Call all 4 endpoints
-      const [
-        multimodalPrediction,
-        audioOnlyPrediction,
-        multimodalExplanation,
-        audioOnlyExplanation,
-      ] = await Promise.all([
-        bachOrBotApi.predictMultimodal(selectedFile, lyrics),
-        bachOrBotApi.predictAudio(selectedFile),
-        bachOrBotApi.explainMultimodal(selectedFile, lyrics),
-        bachOrBotApi.explainAudio(selectedFile),
+      // Call combined endpoints
+      const [combinedPrediction, combinedExplanation] = await Promise.all([
+        bachOrBotApi.predictCombined(selectedFile, lyrics),
+        bachOrBotApi.explainCombined(selectedFile, lyrics),
       ]);
+
+      // Transform the combined results to match existing data structure
+      const multimodalPrediction = {
+        ...combinedPrediction,
+        results: combinedPrediction.results.multimodal,
+      };
+
+      const audioOnlyPrediction = {
+        ...combinedPrediction,
+        results: combinedPrediction.results.audio_only,
+      };
+
+      const multimodalExplanation = {
+        ...combinedExplanation,
+        results: combinedExplanation.results.multimodal,
+      };
+
+      const audioOnlyExplanation = {
+        ...combinedExplanation,
+        results: combinedExplanation.results.audio_only,
+      };
 
       // Signal completion
       onComplete();
