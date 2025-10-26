@@ -47,6 +47,45 @@ export interface AudioOnlyApiResponse {
   results: ExplanationResult;
 }
 
+export interface CombinedPredictionResult {
+  multimodal: PredictionResult;
+  audio_only: PredictionResult;
+  performance: {
+    total_time_seconds: number;
+    multimodal_time_seconds: number;
+    audio_only_time_seconds: number;
+  };
+}
+
+export interface CombinedExplanationResult {
+  multimodal: ExplanationResult;
+  audio_only: ExplanationResult;
+  combined_summary: {
+    total_runtime_seconds: number;
+    factorization_time_seconds: number;
+    source_separation_reused: boolean;
+    timestamp: string;
+  };
+}
+
+export interface CombinedPredictionApiResponse {
+  status: string;
+  lyrics: string;
+  audio_file_name: string;
+  audio_content_type: string;
+  audio_file_size: number;
+  results: CombinedPredictionResult;
+}
+
+export interface CombinedExplanationApiResponse {
+  status: string;
+  lyrics: string;
+  audio_file_name: string;
+  audio_content_type: string;
+  audio_file_size: number;
+  results: CombinedExplanationResult;
+}
+
 // Get API base URL from env
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -123,6 +162,48 @@ export const bachOrBotApi = {
 
     if (!response.ok) {
       throw new Error(`Audio-only explanation failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
+  // Combined prediction (both multimodal and audio-only)
+  async predictCombined(
+    audioFile: File,
+    lyrics: string
+  ): Promise<CombinedPredictionApiResponse> {
+    const formData = new FormData();
+    formData.append("audio_file", audioFile);
+    formData.append("lyrics", lyrics);
+
+    const response = await fetch(`${API_BASE_URL}/api/v1/predict/combined`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Combined prediction failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
+  // Combined explanation (both multimodal and audio-only)
+  async explainCombined(
+    audioFile: File,
+    lyrics: string
+  ): Promise<CombinedExplanationApiResponse> {
+    const formData = new FormData();
+    formData.append("audio_file", audioFile);
+    formData.append("lyrics", lyrics);
+
+    const response = await fetch(`${API_BASE_URL}/api/v1/explain/combined`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Combined explanation failed: ${response.statusText}`);
     }
 
     return response.json();
