@@ -24,7 +24,8 @@ function ModalityPanel({
   //   prediction?.confidence || 0,
   //   97
   // );
-  const confidenceScore = prediction?.confidence || 0;
+  // NOTE: Remove Math.floor if adjusting is to be restored
+  const confidenceScore = Math.floor(prediction?.confidence) || 0;
   const classification = prediction?.label || "Unknown";
 
   // Filter features by modality

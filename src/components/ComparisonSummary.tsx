@@ -23,9 +23,12 @@ function ComparisonSummary({
   audioOnly,
   fileName,
 }: ComparisonSummaryProps) {
+  // NOTE: Remove Math.floor if adjusting is to be restored
   // Get raw confidence
-  const rawMultimodalConfidence = multimodal.prediction?.confidence || 0;
-  const rawAudioOnlyConfidence = audioOnly.prediction?.confidence || 0;
+  const rawMultimodalConfidence =
+    Math.floor(multimodal.prediction?.confidence) || 0;
+  const rawAudioOnlyConfidence =
+    Math.floor(audioOnly.prediction?.confidence) || 0;
 
   // NOTE: Removed adjusting but kept code for backwards compatibility
   // Apply adjustment function
