@@ -2,7 +2,9 @@ import ConfidenceBar from "./ConfidenceBar";
 import ResultPill from "./ResultPill";
 import AudioExplanation from "./AudioExplanation";
 import LyricsExplanation from "./LyricsExplanation";
-import { adjustConfidenceScore } from "../utils/confidenceAdjuster";
+
+// NOTE: Removed adjusting but kept code for backwards compatibility
+// import { adjustConfidenceScore } from "../utils/confidenceAdjuster";
 
 interface ModalityPanelProps {
   title: string;
@@ -17,10 +19,12 @@ function ModalityPanel({
   explanation,
   showLyrics = true,
 }: ModalityPanelProps) {
-  const confidenceScore = adjustConfidenceScore(
-    prediction?.confidence || 0,
-    97
-  );
+  // NOTE: Removed adjusting but kept code for backwards compatibility
+  // const confidenceScore = adjustConfidenceScore(
+  //   prediction?.confidence || 0,
+  //   97
+  // );
+  const confidenceScore = prediction?.confidence || 0;
   const classification = prediction?.label || "Unknown";
 
   // Filter features by modality

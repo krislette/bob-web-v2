@@ -2,7 +2,9 @@ import ConfidenceComparison from "./ConfidenceComparison";
 import TopFactors from "./TopFactors";
 import FinalVerdict from "./FinalVerdict";
 import KeyInsights from "./KeyInsights";
-import { adjustConfidenceScore } from "../utils/confidenceAdjuster";
+
+// NOTE: Removed adjusting but kept code for backwards compatibility
+// import { adjustConfidenceScore } from "../utils/confidenceAdjuster";
 
 interface ComparisonSummaryProps {
   multimodal: {
@@ -25,12 +27,15 @@ function ComparisonSummary({
   const rawMultimodalConfidence = multimodal.prediction?.confidence || 0;
   const rawAudioOnlyConfidence = audioOnly.prediction?.confidence || 0;
 
+  // NOTE: Removed adjusting but kept code for backwards compatibility
   // Apply adjustment function
-  const multimodalConfidence = adjustConfidenceScore(
-    rawMultimodalConfidence,
-    97
-  );
-  const audioOnlyConfidence = adjustConfidenceScore(rawAudioOnlyConfidence, 97);
+  // const multimodalConfidence = adjustConfidenceScore(
+  //   rawMultimodalConfidence,
+  //   97
+  // );
+  // const audioOnlyConfidence = adjustConfidenceScore(rawAudioOnlyConfidence, 97);
+  const multimodalConfidence = rawMultimodalConfidence;
+  const audioOnlyConfidence = rawAudioOnlyConfidence;
 
   const multimodalClass = multimodal.prediction?.label || "Unknown";
   const audioOnlyClass = audioOnly.prediction?.label || "Unknown";
